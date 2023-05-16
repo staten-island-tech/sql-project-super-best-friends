@@ -4,7 +4,10 @@ import GameCard from "./components/GameCard.vue";
 </script>
 
 <template>
-  <GameCard></GameCard>
+  <GameCard
+    title="Legend of Zelda: Tears of the Ligma"
+    summary="Link runs around looking for Zelda and then he finds her"
+  ></GameCard>
 </template>
 
 <style scoped>
