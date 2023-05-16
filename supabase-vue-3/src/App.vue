@@ -1,8 +1,11 @@
 <script setup>
 import HelloWorld from "./components/HelloWorld.vue";
+import GameCard from "./components/GameCard.vue";
 </script>
 
-<template></template>
+<template>
+  <GameCard></GameCard>
+</template>
 
 <style scoped>
 .logo {
