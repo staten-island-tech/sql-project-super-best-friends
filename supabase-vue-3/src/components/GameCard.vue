@@ -28,7 +28,9 @@ img {
 .card {
   background-color: blanchedalmond;
   padding: 0;
-  width: 33%;
+  width: 25%;
+  height: 10%;
   border-radius: 15px;
+  margin: 1rem;
 }
 </style>
