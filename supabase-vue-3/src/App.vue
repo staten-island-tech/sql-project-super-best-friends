@@ -1,10 +1,18 @@
 <script setup>
+import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
 import GameCard from "./components/GameCard.vue";
 </script>
 
 <template>
-  <div class="container"></div>
+  <div class="container">
+    <nav>
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/gamecard">Game Card</RouterLink>
+      <RouterLink to="/sign-in">Sign-In</RouterLink>
+    </nav>
+    <RouterView />
+  </div>
 </template>
 
 <style scoped>
