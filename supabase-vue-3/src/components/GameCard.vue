@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <img
-      src="https://sm.ign.com/t/ign_ap/deal/d/daily-deal/daily-deals-save-on-zelda-totk-root-a-game-of-woodland-might_d5x8.1280.jpg"
+      src="https://www.highsnobiety.com/static-assets/thumbor/SslAH-OYIgo6IxpwzVf8Mto0CBI=/1600x1067/www.highsnobiety.com/static-assets/wp-content/uploads/2021/09/20171839/fortnite-balenciaga-collaboration-release-info-feat.jpg"
       alt="URMA"
     />
     <p>{{ title }}</p>
@@ -32,5 +32,12 @@ img {
   height: 10%;
   border-radius: 15px;
   margin: 1rem;
+  box-shadow: 0px 0px 0.625rem black;
+  transition: 0.3s all;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  cursor: pointer;
 }
 </style>
