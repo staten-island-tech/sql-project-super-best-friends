@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import GameCard from "./components/GameCard.vue";
+// import GameCard from "./components/GameCard.vue";
 export default {
   setup() {
     return {};

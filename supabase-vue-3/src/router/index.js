@@ -6,22 +6,22 @@ const router = createRouter({
     {
       path: "/",
       name: "games",
-      component: Home,
+      component: () => import("../views/Home.vue"),
     },
 
-    {
-      path: "gamecard",
-      name: "Game Cards",
-      component: () => import("../components/GameCard.vue"),
-    },
+    // {
+    //   path: "/gamecard",
+    //   name: "Game Cards",
+    //   component: () => import("../components/GameCard.vue"),
+    // },
 
     {
-      path: "sign-in",
+      path: "/sign-in",
       name: "Sign-In",
       component: () => import("../views/Sign-In.vue"),
     },
     {
-      path: "helloworld",
+      path: "/helloworld",
       name: "Hello World",
       component: () => import("../views/HelloWorld.vue"),
     },
