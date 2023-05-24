@@ -9,11 +9,11 @@ const router = createRouter({
       component: () => import("../views/Home.vue"),
     },
 
-    // {
-    //   path: "/gamecard",
-    //   name: "Game Cards",
-    //   component: () => import("../components/GameCard.vue"),
-    // },
+    {
+      path: "/gamecard",
+      name: "Game Cards",
+      component: () => import("../components/GameCard.vue"),
+    },
 
     {
       path: "/sign-in",
