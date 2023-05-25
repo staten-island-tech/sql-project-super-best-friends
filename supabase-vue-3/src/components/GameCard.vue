@@ -1,9 +1,6 @@
 <template>
   <div class="card">
-    <img
-      src="https://www.highsnobiety.com/static-assets/thumbor/SslAH-OYIgo6IxpwzVf8Mto0CBI=/1600x1067/www.highsnobiety.com/static-assets/wp-content/uploads/2021/09/20171839/fortnite-balenciaga-collaboration-release-info-feat.jpg"
-      alt="URMA"
-    />
+    <img {{ picture }} />
     <p>{{ title }}</p>
     <p>{{ summary }}</p>
   </div>
@@ -15,6 +12,7 @@ export default {
   props: {
     title: String,
     summary: String,
+    image: img,
   },
 };
 </script>
