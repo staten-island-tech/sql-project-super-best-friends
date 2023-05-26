@@ -12,7 +12,7 @@ export default {
   props: {
     title: String,
     summary: String,
-    image: img,
+    picture: String,
   },
 };
 </script>
