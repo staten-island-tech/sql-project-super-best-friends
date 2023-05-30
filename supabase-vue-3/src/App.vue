@@ -7,9 +7,9 @@ import GameCard from "./components/GameCard.vue";
 <template>
   <div class="container">
     <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/gamecard">Game Card</RouterLink>
-      <RouterLink to="/sign-in">Sign-In</RouterLink>
+      <RouterLink to="/"> Home</RouterLink>
+      <RouterLink to="/gamecard"> Game Card</RouterLink>
+      <RouterLink to="/sign-in"> Sign-In</RouterLink>
     </nav>
     <RouterView />
   </div>
