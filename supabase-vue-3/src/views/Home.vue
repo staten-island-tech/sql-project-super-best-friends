@@ -1,4 +1,5 @@
 <template>
+  <h1>poop</h1>
   <GameCard></GameCard>
 </template>
 

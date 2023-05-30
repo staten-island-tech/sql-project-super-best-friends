@@ -1,4 +1,5 @@
 <script setup>
+// import Home from "./views/Home.vue";
 import HelloWorld from "./components/HelloWorld.vue";
 import GameCard from "./components/GameCard.vue";
 
@@ -22,6 +23,9 @@ onMounted(() => {
 
 <template>
   <HelloWorld></HelloWorld>
+  <GameCard title=""></GameCard>
+  <!-- <Home></Home> -->
+
   <div class="container" style="padding: 50px 0 100px 0">
     <Account v-if="session" :session="session" />
     <Auth v-else />
