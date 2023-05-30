@@ -1,7 +1,5 @@
 <script setup>
-import HelloWorld from "./components/HelloWorld.vue";
-import GameCard from "./components/GameCard.vue";
-
+import HomeView from "./views/HomeView.vue";
 import { onMounted, ref } from "vue";
 import Account from "./components/AccountLog.vue";
 import Auth from "./components/AuthLog.vue";
@@ -21,7 +19,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <HelloWorld></HelloWorld>
+  <HomeView></HomeView>
+
   <div class="container" style="padding: 50px 0 100px 0">
     <Account v-if="session" :session="session" />
     <Auth v-else />
