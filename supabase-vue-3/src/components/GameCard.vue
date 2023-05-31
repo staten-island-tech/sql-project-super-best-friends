@@ -1,9 +1,14 @@
 <template>
+<<<<<<< HEAD
   <div @click="" class="card">
     <img
       src="https://www.highsnobiety.com/static-assets/thumbor/SslAH-OYIgo6IxpwzVf8Mto0CBI=/1600x1067/www.highsnobiety.com/static-assets/wp-content/uploads/2021/09/20171839/fortnite-balenciaga-collaboration-release-info-feat.jpg"
       alt="URMA"
     />
+=======
+  <div class="card">
+    <img {{ picture }} />
+>>>>>>> 40a61150b195d1022c83c689113392294c4e9641
     <p>{{ title }}</p>
     <p>{{ summary }}</p>
   </div>
@@ -18,6 +23,7 @@ export default {
   props: {
     title: String,
     summary: String,
+<<<<<<< HEAD
     id: Number,
   },
   methods: {
@@ -28,6 +34,9 @@ export default {
       reponse_content.value = await res.json();
       console.log(reponse_content.value.description);
     },
+=======
+    picture: String,
+>>>>>>> 40a61150b195d1022c83c689113392294c4e9641
   },
 };
 </script>
