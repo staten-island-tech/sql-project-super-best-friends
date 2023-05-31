@@ -1,22 +1,8 @@
 <template>
-<<<<<<< HEAD
-  <div @click="" class="card">
-    <img
-      src="https://www.highsnobiety.com/static-assets/thumbor/SslAH-OYIgo6IxpwzVf8Mto0CBI=/1600x1067/www.highsnobiety.com/static-assets/wp-content/uploads/2021/09/20171839/fortnite-balenciaga-collaboration-release-info-feat.jpg"
-      alt="URMA"
-    />
-=======
   <div class="card">
-<<<<<<< HEAD
-    <img {{ picture }} />
->>>>>>> 40a61150b195d1022c83c689113392294c4e9641
-    <p>{{ title }}</p>
-    <p>{{ summary }}</p>
-=======
     <p>{{ Game.name }}</p>
     <img :src="Game.background_image" :alt="Game.name" />
     <h2 @click="Like" class="unliked">♥</h2>
->>>>>>> 8b9f34075a9c0e4632ccade0d3991f1cb83e1f2f
   </div>
 </template>
 
@@ -30,20 +16,7 @@ export default {
     Game: Object,
     title: String,
     summary: String,
-<<<<<<< HEAD
-    id: Number,
-  },
-  methods: {
-    Sum: async function (id) {
-      const res = await fetch(
-        `https://api.rawg.io/api/games/${id}}?dates=2022-01-01%2C2022-12-30&key=${RAWG_API_KEY}&&page_size=100&platforms=18%2C1%2C7&ordering=rating`
-      );
-      reponse_content.value = await res.json();
-      console.log(reponse_content.value.description);
-    },
-=======
     picture: String,
->>>>>>> 40a61150b195d1022c83c689113392294c4e9641
   },
   methods: {
     Like: function (event) {
