@@ -39,6 +39,8 @@ function Fall() {
 </script>
 
 <template>
+  <button class="backward" @click="Fall">◀️</button>
+  <button class="foward" @click="Jump">▶️</button>
   <div class="GameBox">
     <GameCard
       v-for="response in response_content.results"
