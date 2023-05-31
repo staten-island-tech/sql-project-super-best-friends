@@ -1,12 +1,17 @@
 <template>
   <div class="box">
+    <p>New to _____? Create an Account Here</p>
+    <div class="log-in">
+      <p>Log In</p>
+    </div>
     <div class="username">
-      <p>username</p>
-      <input type="text" id="user" placeholder="type username here" />
+      <input type="text" id="user" placeholder="Email Address" />
     </div>
     <div class="password">
-      <p>password</p>
-      <input type="text" id="pass" placeholder="type password here" />
+      <input type="text" id="pass" placeholder="Password" />
+    </div>
+    <div>
+      <button class="btn">Log In</button>
     </div>
   </div>
 </template>
@@ -19,4 +24,20 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.box {
+  width: 175%;
+  border-color: black;
+  border-style: solid;
+  border-width: 1.5px;
+  color: black;
+}
+
+.btn {
+  margin: 10px;
+}
+
+::placeholder {
+  color: black;
+}
+</style>
