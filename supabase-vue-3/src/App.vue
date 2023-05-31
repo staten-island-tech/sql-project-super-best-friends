@@ -1,4 +1,5 @@
 <script setup>
+import HomeView from "./views/HomeView.vue";
 import { onMounted, ref } from "vue";
 import Account from "./components/AccountLog.vue";
 import Auth from "./components/AuthLog.vue";
@@ -18,11 +19,11 @@ onMounted(() => {
 </script>
 
 <template>
+  <HomeView></HomeView>
   <div class="container" style="padding: 50px 0 100px 0">
     <Account v-if="session" :session="session" />
     <Auth v-else />
   </div>
-  <HomeView></HomeView>
 </template>
 
 <style scoped>
