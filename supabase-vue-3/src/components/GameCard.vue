@@ -1,9 +1,13 @@
 <template>
+<<<<<<< Updated upstream
   <div class="card">
-    <img {{ picture }} />
-    <p>{{ title }}</p>
-    <p>{{ summary }}</p>
+    <p>{{ Game.name }}</p>
+    <img :src="Game.background_image" :alt="Game.name" />
+    <h2 @click="Like" class="unliked">♥</h2>
   </div>
+=======
+  <div class="card"></div>
+>>>>>>> Stashed changes
 </template>
 
 <script>
@@ -13,6 +17,7 @@ const RAWG_API_KEY = "6c361a8e1cbd4e54968bb6859e285e08";
 export default {
   name: "Card",
   props: {
+    Game: Object,
     title: String,
     summary: String,
     picture: String,
