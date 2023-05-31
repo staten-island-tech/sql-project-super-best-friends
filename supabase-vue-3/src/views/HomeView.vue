@@ -1,5 +1,5 @@
 <script async setup>
-import { ref, watch } from "vue";
+import { ref } from "vue";
 import GameCard from "../components/GameCard.vue";
 
 const games = ref("");
