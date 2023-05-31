@@ -7,10 +7,16 @@
     />
 =======
   <div class="card">
+<<<<<<< HEAD
     <img {{ picture }} />
 >>>>>>> 40a61150b195d1022c83c689113392294c4e9641
     <p>{{ title }}</p>
     <p>{{ summary }}</p>
+=======
+    <p>{{ Game.name }}</p>
+    <img :src="Game.background_image" :alt="Game.name" />
+    <h2 @click="Like" class="unliked">♥</h2>
+>>>>>>> 8b9f34075a9c0e4632ccade0d3991f1cb83e1f2f
   </div>
 </template>
 
@@ -21,6 +27,7 @@ const RAWG_API_KEY = "6c361a8e1cbd4e54968bb6859e285e08";
 export default {
   name: "Card",
   props: {
+    Game: Object,
     title: String,
     summary: String,
 <<<<<<< HEAD
@@ -38,6 +45,17 @@ export default {
     picture: String,
 >>>>>>> 40a61150b195d1022c83c689113392294c4e9641
   },
+  methods: {
+    Like: function (event) {
+      if (event.target.classList.contains("unliked")) {
+        event.target.classList.remove("unliked");
+        event.target.classList.add("liked");
+      } else {
+        event.target.classList.remove("liked");
+        event.target.classList.add("unliked");
+      }
+    },
+  },
 };
 </script>
 
@@ -45,19 +63,27 @@ export default {
 img {
   width: 100%;
   height: 100%;
-  border-radius: 15px 15px 0 0;
+  object-fit: cover;
 }
 .card {
-  background-color: blanchedalmond;
-  padding: 0;
-  width: 25%;
-  height: 10%;
-  border-radius: 15px;
-  margin: 1rem;
+  background-color: rgb(83, 80, 80);
+  color: white;
+  width: 23vw;
+  height: 45vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin: 30px 0;
   box-shadow: 0px 0px 0.625rem black;
   transition: 0.3s all;
 }
-
+.liked {
+  color: red;
+}
+.unliked {
+  color: white;
+}
 .card:hover {
   transform: scale(1.05);
   cursor: pointer;
