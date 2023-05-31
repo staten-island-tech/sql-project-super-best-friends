@@ -1,9 +1,13 @@
 <template>
+<<<<<<< Updated upstream
   <div class="card">
     <p>{{ Game.name }}</p>
     <img :src="Game.background_image" :alt="Game.name" />
     <h2 @click="Like" class="unliked">♥</h2>
   </div>
+=======
+  <div class="card"></div>
+>>>>>>> Stashed changes
 </template>
 
 <script>

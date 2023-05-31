@@ -1,7 +1,4 @@
 <script setup>
-import HelloWorld from "./components/HelloWorld.vue";
-import GameCard from "./components/GameCard.vue";
-
 import { onMounted, ref } from "vue";
 import Account from "./components/AccountLog.vue";
 import Auth from "./components/AuthLog.vue";
