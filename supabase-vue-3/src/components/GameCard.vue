@@ -1,7 +1,7 @@
 <template>
-  <div class="card">
-    <p>{{ Game.name }}</p>
-    <img :src="Game.background_image" :alt="Game.name" />
+  <div class="card" :id="Game.id">
+    <p :id="Game.id">{{ Game.name }}</p>
+    <img :id="Game.id" :src="Game.background_image" :alt="Game.id" />
     <h2 @click="Like" class="unliked">♥</h2>
   </div>
 </template>
