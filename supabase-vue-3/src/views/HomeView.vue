@@ -40,6 +40,8 @@ function Fall() {
 function ClosePopUp() {
   document.querySelector(".GameBox").classList.add("Showit");
   document.querySelector(".GameBox").classList.remove("Hideit");
+  document.querySelector(".Buttons").classList.add("Showit");
+  document.querySelector(".Buttons").classList.remove("Hideit");
   document.querySelector(".Popup").classList.add("Hideit");
 }
 async function PopIt(event) {
@@ -47,6 +49,7 @@ async function PopIt(event) {
   document.querySelector(".Popup").classList.remove("Hideit");
   document.querySelector(".Popup").classList.add("Showit");
   document.querySelector(".GameBox").classList.add("Hideit");
+  document.querySelector(".Buttons").classList.add("Hideit");
 
   const res = await fetch(
     `https://api.rawg.io/api/games/${event.target.id}?dates=2022-01-01%2C2022-12-30&key=${RAWG_API_KEY}&page_size=39&platforms=18%2C1%2C7&ordering=rating-`
@@ -57,28 +60,27 @@ async function PopIt(event) {
 </script>
 
 <template>
-  <section class="Popup">
-    <div>
-      <h3>{{ description_content.description_raw }}</h3>
+  <div class="Popup Hideit">
+    <h3>{{ description_content.description_raw }}</h3>
 
-      <img
-        :src="description_content.background_image"
-        :alt="description_content.name"
-      />
-      <h2>{{ description_content.released }}</h2>
-      <h2>{{ description_content.rating }}</h2>
-      <h1 v-for="description in description_content.developers">
-        {{ description.name }}
-      </h1>
-      <h1 v-for="description in description_content.platforms">
-        {{ description.platform.name }}
-      </h1>
-      <h1 v-for="description in description_content.genres">
-        {{ description.name }}
-      </h1>
-      <button @click="ClosePopUp">X</button>
-    </div>
-  </section>
+    <img
+      :src="description_content.background_image"
+      :alt="description_content.name"
+    />
+    <h2>{{ description_content.released }}</h2>
+    <h2>{{ description_content.rating }}</h2>
+    <h1 v-for="description in description_content.developers">
+      {{ description.name }}
+    </h1>
+    <h1 v-for="description in description_content.platforms">
+      {{ description.platform.name }}
+    </h1>
+    <h1 v-for="description in description_content.genres">
+      {{ description.name }}
+    </h1>
+    <button @click="ClosePopUp">X</button>
+  </div>
+
   <div class="GameBox">
     <GameCard
       @click="PopIt"
@@ -88,13 +90,22 @@ async function PopIt(event) {
     ></GameCard>
   </div>
 
-  <button class="backward" @click="Fall">◀️</button>
-  <button class="foward" @click="Jump">▶️</button>
+  <div class="Buttons">
+    <button class="backward" @click="Fall">◀️</button>
+    <h4>{{ page }}</h4>
+    <button class="foward" @click="Jump">▶️</button>
+  </div>
 </template>
 
 <style>
 img {
   height: 20vh;
+}
+.Buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 5vh;
 }
 .Popup {
 }
@@ -102,6 +113,7 @@ img {
   visibility: visible;
 }
 .Hideit {
+  display: none;
   visibility: collapse;
 }
 .GameBox {

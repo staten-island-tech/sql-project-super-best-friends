@@ -5,7 +5,10 @@
     <h2 @click="Like" class="unliked">♥</h2>
   </div>
 </template>
-
+<!-- Bugs
+'Liking One Stays on different page 
+Clean up Css a bit 
+Make PopUp Card  -->
 <script>
 export default {
   name: "Card",
@@ -17,6 +20,7 @@ export default {
   },
   methods: {
     Like: function (event) {
+      event.stopPropagation();
       if (event.target.classList.contains("unliked")) {
         event.target.classList.remove("unliked");
         event.target.classList.add("liked");
@@ -38,8 +42,8 @@ img {
 .card {
   background-color: rgb(83, 80, 80);
   color: white;
-  width: 23vw;
-  height: 45vh;
+  width: 25%;
+  height: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
