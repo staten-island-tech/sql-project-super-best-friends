@@ -2,7 +2,7 @@
   <div class="box">
     <p>New to _____? Create an Account Here</p>
     <div class="log-in">
-      <p>Log In</p>
+      <p>Log In To Your Account</p>
     </div>
     <div class="username">
       <input type="text" id="user" placeholder="Email Address" />
@@ -25,12 +25,24 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap");
+
+* {
+  font-family: "Dongle", sans-serif;
+  font-size: 40px;
+}
+
+body {
+  background-color: black;
+}
 .box {
   width: 175%;
   border-color: black;
   border-style: solid;
   border-width: 1.5px;
+  border-radius: 10px;
   color: black;
+  background-color: white;
 }
 
 .btn {
@@ -39,5 +51,13 @@ export default {
 
 ::placeholder {
   color: black;
+}
+
+input {
+  border-radius: 5px;
+}
+
+.username {
+  margin: 10px;
 }
 </style>
