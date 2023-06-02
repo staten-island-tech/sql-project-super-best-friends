@@ -1,11 +1,14 @@
 <template>
-  <div class="card">
-    <p>{{ Game.name }}</p>
-    <img :src="Game.background_image" :alt="Game.name" />
+  <div class="card" :id="Game.id">
+    <p :id="Game.id">{{ Game.name }}</p>
+    <img :id="Game.id" :src="Game.background_image" :alt="Game.id" />
     <h2 @click="Like" class="unliked">♥</h2>
   </div>
 </template>
-
+<!-- Bugs
+'Liking One Stays on different page 
+Clean up Css a bit 
+Make PopUp Card  -->
 <script>
 import { ref } from "vue";
 let id = ref("");
@@ -20,6 +23,7 @@ export default {
   },
   methods: {
     Like: function (event) {
+      event.stopPropagation();
       if (event.target.classList.contains("unliked")) {
         event.target.classList.remove("unliked");
         event.target.classList.add("liked");
@@ -41,8 +45,8 @@ img {
 .card {
   background-color: rgb(83, 80, 80);
   color: white;
-  width: 23vw;
-  height: 45vh;
+  width: 25%;
+  height: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
