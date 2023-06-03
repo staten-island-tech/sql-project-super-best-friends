@@ -2,7 +2,7 @@
   <div class="card" :id="Game.id">
     <p :id="Game.id">{{ Game.name }}</p>
     <img :id="Game.id" :src="Game.background_image" :alt="Game.id" />
-    <h2 @click="Like" class="unliked">♥</h2>
+    <h2 @click="Like" :id="Game.id" class="unliked" :class="Game.name">♥</h2>
   </div>
 </template>
 <!-- Bugs
@@ -10,6 +10,7 @@
 Clean up Css a bit 
 Make PopUp Card  -->
 <script>
+import { supabase } from "../supabase";
 export default {
   name: "Card",
   props: {
@@ -19,7 +20,7 @@ export default {
     picture: String,
   },
   methods: {
-    Like: function (event) {
+    Like: async function (event) {
       event.stopPropagation();
       if (event.target.classList.contains("unliked")) {
         event.target.classList.remove("unliked");
@@ -28,6 +29,10 @@ export default {
         event.target.classList.remove("liked");
         event.target.classList.add("unliked");
       }
+      if(EXISTS (SELECT  FROM like_system WHERE id = 123))
+      const { error } = await supabase
+        .from("like_system")
+        .insert({ id: event.target.id, name: event.target.classList[0] });
     },
   },
 };
