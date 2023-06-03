@@ -43,7 +43,7 @@ img {
   background-color: rgb(83, 80, 80);
   color: white;
   width: 25%;
-  height: 40%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
