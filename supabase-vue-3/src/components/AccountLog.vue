@@ -8,7 +8,6 @@ const { session } = toRefs(props);
 const loading = ref(true);
 const username = ref("");
 const website = ref("");
-const avatar_url = ref("");
 
 onMounted(() => {
   getProfile();
@@ -48,7 +47,7 @@ async function updateProfile() {
       id: user.id,
       username: username.value,
       website: website.value,
-      avatar_url: avatar_url.value,
+
       updated_at: new Date(),
     };
 

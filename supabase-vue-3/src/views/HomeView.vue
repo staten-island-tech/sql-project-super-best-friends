@@ -94,7 +94,7 @@ async function PopIt(event) {
     </p>
     <button style="align-self: center" @click="ClosePopUp">X</button>
   </div>
-
+  <!-- 
   <div class="GameBox flex">
     <GameCard
       @click="PopIt"
@@ -102,13 +102,13 @@ async function PopIt(event) {
       :Game="response"
       :title="response.name"
     ></GameCard>
-  </div>
+  </div> -->
 
-  <div class="Buttons">
+  <!-- <div class="Buttons">
     <button class="backward" @click="Fall">◀️</button>
     <h4>{{ page }}</h4>
     <button class="foward" @click="Jump">▶️</button>
-  </div>
+  </div> -->
 </template>
 
 <style>
