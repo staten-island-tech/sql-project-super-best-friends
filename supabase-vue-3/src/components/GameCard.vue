@@ -1,20 +1,34 @@
 <template>
-  <div class="card">
-    <img
-      src="https://sm.ign.com/t/ign_ap/deal/d/daily-deal/daily-deals-save-on-zelda-totk-root-a-game-of-woodland-might_d5x8.1280.jpg"
-      alt="URMA"
-    />
-    <p>{{ title }}</p>
-    <p>{{ summary }}</p>
+  <div class="card" :id="Game.id">
+    <p :id="Game.id">{{ Game.name }}</p>
+    <img :id="Game.id" :src="Game.background_image" :alt="Game.id" />
+    <h2 @click="Like" class="unliked">♥</h2>
   </div>
 </template>
-
+<!-- Bugs
+'Liking One Stays on different page 
+Clean up Css a bit 
+Make PopUp Card  -->
 <script>
 export default {
   name: "Card",
   props: {
+    Game: Object,
     title: String,
     summary: String,
+    picture: String,
+  },
+  methods: {
+    Like: function (event) {
+      event.stopPropagation();
+      if (event.target.classList.contains("unliked")) {
+        event.target.classList.remove("unliked");
+        event.target.classList.add("liked");
+      } else {
+        event.target.classList.remove("liked");
+        event.target.classList.add("unliked");
+      }
+    },
   },
 };
 </script>
@@ -23,14 +37,29 @@ export default {
 img {
   width: 100%;
   height: 100%;
-  border-radius: 15px 15px 0 0;
+  object-fit: cover;
 }
 .card {
-  background-color: blanchedalmond;
-  padding: 0;
+  background-color: rgb(83, 80, 80);
+  color: white;
   width: 25%;
-  height: 10%;
-  border-radius: 15px;
-  margin: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin: 30px 0;
+  box-shadow: 0px 0px 0.625rem black;
+  transition: 0.3s all;
+}
+.liked {
+  color: red;
+}
+.unliked {
+  color: white;
+}
+.card:hover {
+  transform: scale(1.05);
+  cursor: pointer;
 }
 </style>
