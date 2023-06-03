@@ -1,5 +1,9 @@
 <template>
   <div class="box">
+    <img
+      src="https://app.logopony.com/preview/ee18a8c6-6fef-4bcf-bcec-b64f7356cb4c"
+      alt=""
+    />
     <p>New to _____? Create an Account Here</p>
     <div class="log-in">
       <p>Log In To Your Account</p>
@@ -29,19 +33,22 @@ export default {
 
 * {
   font-family: "Dongle", sans-serif;
-  font-size: 40px;
+  font-size: 30px;
 }
 
 body {
   background-color: black;
 }
 .box {
-  width: 175%;
+  width: 150%;
+  margin-left: auto;
+  margin-right: auto;
   border-color: black;
   border-style: solid;
   border-width: 1.5px;
   border-radius: 10px;
   color: black;
+
   background-color: white;
 }
 

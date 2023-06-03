@@ -10,9 +10,9 @@ const router = createRouter({
     },
 
     {
-      path: "/gamecard",
+      path: "/GameCard",
       name: "Game Cards",
-      component: () => import("../components/GameCard.vue"),
+      component: () => import("../views/HomeView.vue"),
     },
 
     {

@@ -1,5 +1,5 @@
 <template>
-  <GameCard></GameCard>
+  <h1>poo</h1>
 </template>
 
 <script>

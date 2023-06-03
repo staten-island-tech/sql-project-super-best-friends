@@ -3,13 +3,11 @@ import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./views/HelloWorld.vue";
 import GameCard from "./components/GameCard.vue";
 
-
-
 import HomeView from "./views/HomeView.vue";
 import { onMounted, ref } from "vue";
-import Account from "./components/AccountLog.vue";
-import Auth from "./components/AuthLog.vue";
-import { supabase } from "./supabase";
+// import Account from "./components/AccountLog.vue";
+// import Auth from "./components/AuthLog.vue";
+// import { supabase } from "./supabase";
 
 const session = ref();
 
@@ -25,14 +23,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <HomeView></HomeView>
-  <div class="container">
-    <nav>
-      <RouterLink to="/"> Home</RouterLink>
-      <RouterLink to="/gamecard"> Game Card</RouterLink>
-      <RouterLink to="/sign-in"> Sign-In</RouterLink>
-    </nav>
-    <RouterView />
+  <nav class="container">
+    <li><RouterLink to="/"> Home</RouterLink></li>
+    <li><RouterLink to="/GameCard"> Game Card</RouterLink></li>
+    <li><RouterLink to="/sign-in"> Sign-In</RouterLink></li>
+  </nav>
+  <hr />
+
+  <RouterView />
   <div class="container" style="padding: 50px 0 100px 0">
     <Account v-if="session" :session="session" />
     <Auth v-else />
@@ -41,9 +39,32 @@ onMounted(() => {
 
 <style scoped>
 .container {
+  color: rgb(13, 26, 38);
+  margin: 0;
+  top: 0;
+  height: 60px;
+  line-height: 60px;
+  width: 100vw;
+  z-index: 10;
   display: flex;
-  flex-wrap: wrap;
+  width: 100%;
   justify-content: space-evenly;
-  align-items: baseline;
+
+  /* align-items: baseline; */
+}
+.container li {
+  color: white;
+  display: block;
+  font-size: 0.7em;
+  height: 50px;
+  letter-spacing: 1px;
+  margin: 0 20px;
+  padding: 0 4px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  display: inline-block;
 }
 </style>
