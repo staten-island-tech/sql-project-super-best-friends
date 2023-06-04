@@ -1,8 +1,8 @@
 <template>
   <div class="box">
-    <div class="sign-in-container">
-      <p>Sign-In To Your Account Here</p>
-      <form class="sign-in">
+    <div class="sign-up-container">
+      <p>Sign-Up For An Account Here</p>
+      <form class="sign-up">
         <label for="email">Email</label>
         <input
           v-model="email"
@@ -18,7 +18,7 @@
           placeholder="Password"
         />
       </form>
-      <button @click="signIn">Sign In</button>
+      <button @click="signUp">Sign Up</button>
     </div>
   </div>
 </template>
@@ -30,9 +30,9 @@ import { supabase } from "../supabase.js";
 const email = ref("");
 const password = ref("");
 
-async function signIn() {
+async function signUp() {
   try {
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signUp({
       email: email,
       password: password,
     });
@@ -42,7 +42,7 @@ async function signIn() {
     }
     console.log(data);
   } catch (error) {
-    console.log("An error occurred during signin", error);
+    console.log("An error occurred during signup", error);
   }
 }
 </script>
@@ -59,7 +59,7 @@ body {
   background-color: black;
 }
 
-.sign-in {
+.sign-up {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -77,7 +77,7 @@ body {
   background-color: white;
 }
 
-.sign-in-container {
+.sign-up-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -86,7 +86,7 @@ body {
   color: white;
 }
 
-.sign-in-container input {
+.sign-up-container input {
   border-radius: 0.2rem;
   text-decoration: none;
   outline: none;

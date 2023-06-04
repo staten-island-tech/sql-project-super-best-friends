@@ -39,9 +39,11 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-image: url(https://wallpapers.com/images/hd/aesthetic-gaming-mrcp5e4kr24rf54h.jpg);
+  /* background-image: url(./assets/gamestockimg.jpg);
+  opacity: 50%; */
   position: relative;
 
-    background-size: cover;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   height: 100%;

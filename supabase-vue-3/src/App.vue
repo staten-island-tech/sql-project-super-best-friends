@@ -7,9 +7,9 @@ import HomeView from "./views/HomeView.vue";
 import { onMounted, ref } from "vue";
 // import Account from "./components/AccountLog.vue";
 // import Auth from "./components/AuthLog.vue";
-// import { supabase } from "./supabase";
+// import { supabase } from "./supabase.js";
 
-const session = ref();
+const session = ref(false);
 
 onMounted(() => {
   supabase.auth.getSession().then(({ data }) => {
@@ -27,11 +27,12 @@ onMounted(() => {
     <li><RouterLink to="/"> Home</RouterLink></li>
     <li><RouterLink to="/GameCard"> Game Card</RouterLink></li>
     <li><RouterLink to="/sign-in"> Sign-In</RouterLink></li>
+    <li><RouterLink to="/sign-up"> Sign-Up</RouterLink></li>
   </nav>
   <hr />
 
   <RouterView />
-  <div class="container" style="padding: 50px 0 100px 0">
+  <div class="container">
     <Account v-if="session" :session="session" />
     <Auth v-else />
   </div>
