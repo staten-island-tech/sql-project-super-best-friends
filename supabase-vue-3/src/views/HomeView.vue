@@ -2,36 +2,37 @@
 import { supabase } from "../supabase";
 import { ref, watch } from "vue";
 import GameCard from "../components/GameCard.vue";
-Poop();
+// Poop();
 let description_content = ref("");
-const games = ref("");
+// const games = ref("");
 const RAWG_API_KEY = "6c361a8e1cbd4e54968bb6859e285e08";
 let page = ref("1");
 let response_content = ref("");
-async function Poop() {
-  const { data, error } = await supabase.from("like_system").select();
+// async function Poop() {
+//   const { data, error } = await supabase.from("like_system").select();
 
-  let aa = await supabase.from("like_system").select();
-  let LikeData = aa.data;
+//   let aa = await supabase.from("like_system").select();
+//   let LikeData = aa.data;
 
-  if (data) {
-    LikeData.forEach((el) => {
-      document.querySelector(`#H${el.id}`).classList.add(`liked`);
-    });
-  }
-}
+//   if (data) {
+//     LikeData.forEach((el) => {
+//       document.querySelector(`#H${el.id}`).classList.add(`liked`);
+//     });
+//   }
+// }
 async function getGames(page) {
   const res = await fetch(
     `https://api.rawg.io/api/games?dates=2022-01-01%2C2022-12-30&key=${RAWG_API_KEY}&page=${page.value}&page_size=39&platforms=18%2C1%2C7&ordering=rating-`
   );
   console.log(res.url);
   response_content.value = await res.json();
+  console.log(response_content);
   // response_content = Object.values(response_content).filter(
   //   (i) => i.background_image == null
   // );
 }
 getGames(page);
-async function Jump() {
+function Jump() {
   if (page.value >= 10) {
     document.querySelector(".foward").disabled = true;
   } else if (page.value <= 10) {
@@ -42,7 +43,7 @@ async function Jump() {
   // await Poop();
   return page.value;
 }
-async function Fall() {
+function Fall() {
   if (page.value <= 1) {
     document.querySelector(".backward").disabled = true;
   } else if (page.value >= 2) {
@@ -117,13 +118,13 @@ const awesome = ref("");
     <button style="align-self: center" @click="ClosePopUp">X</button>
   </div> -->
 
-  <div class="GameBox flex">
+  <Suspense class="GameBox flex">
     <GameCard
       v-for="response in response_content.results"
       :Game="response"
       :title="response.name"
     ></GameCard>
-  </div>
+  </Suspense>
 
   <div class="Buttons">
     <button class="backward" @click="Fall">◀️</button>

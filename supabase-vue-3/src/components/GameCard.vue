@@ -24,19 +24,19 @@ const props = defineProps({
   summary: String,
   picture: String,
 });
-async function PopIt(event) {
-  console.log(event.target.id);
-  document.querySelector(".Popup").classList.remove("Hideit");
-  document.querySelector(".Popup").classList.add("Showit");
-  document.querySelector(".GameBox").classList.add("Hideit");
-  document.querySelector(".Buttons").classList.add("Hideit");
+// async function PopIt(event) {
+//   console.log(event.target.id);
+//   document.querySelector(".Popup").classList.remove("Hideit");
+//   document.querySelector(".Popup").classList.add("Showit");
+//   document.querySelector(".GameBox").classList.add("Hideit");
+//   document.querySelector(".Buttons").classList.add("Hideit");
 
-  const res = await fetch(
-    `https://api.rawg.io/api/games/${event.target.id}?dates=2022-01-01%2C2022-12-30&key=${RAWG_API_KEY}&page_size=39&platforms=18%2C1%2C7&ordering=rating-`
-  );
-  console.log(res.url);
-  description_content.value = await res.json();
-}
+//   const res = await fetch(
+//     `https://api.rawg.io/api/games/${event.target.id}?dates=2022-01-01%2C2022-12-30&key=${RAWG_API_KEY}&page_size=39&platforms=18%2C1%2C7&ordering=rating-`
+//   );
+//   console.log(res.url);
+//   description_content.value = await res.json();
+// }
 // async function Poop() {
 //   const { data, error } = await supabase.from("like_system").select();
 
@@ -49,11 +49,11 @@ async function PopIt(event) {
 //     });
 //   }
 // }
-const { error } = await supabase
-  .from("like_system")
-  .insert({ id: event.target.id, name: event.target.classList[0] });
+// const { error } = await supabase
+//   .from("like_system")
+//   .insert({ id: event.target.id, name: event.target.classList[0] });
 
-console.log(await supabase.from("like_system").select().eq("id", 685577));
+// console.log(await supabase.from("like_system").select().eq("id", 685577));
 
 async function checkExists(event) {
   event.stopPropagation();

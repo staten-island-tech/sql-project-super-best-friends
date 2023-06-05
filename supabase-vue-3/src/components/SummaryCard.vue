@@ -34,6 +34,21 @@
   </div>
 </template>
 
-<script setup></script>
+<script async setup>
+import { ref, watch } from "vue";
+async function PopIt(event) {
+  console.log(event.target.id);
+  // document.querySelector(".Popup").classList.remove("Hideit");
+  // document.querySelector(".Popup").classList.add("Showit");
+  // document.querySelector(".GameBox").classList.add("Hideit");
+  // document.querySelector(".Buttons").classList.add("Hideit");
+
+  const res = await fetch(
+    `https://api.rawg.io/api/games/${event.target.id}?dates=2022-01-01%2C2022-12-30&key=${RAWG_API_KEY}&page_size=39&platforms=18%2C1%2C7&ordering=rating-`
+  );
+  console.log(res.url);
+  description_content.value = await res.json();
+}
+</script>
 
 <style scoped></style>
