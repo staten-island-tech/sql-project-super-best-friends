@@ -74,7 +74,11 @@ body {
   border-width: 1.5px;
   border-radius: 10px;
   color: black;
-  background-color: white;
+  background-color: #36393e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .sign-in-container {
@@ -94,8 +98,14 @@ body {
   padding: 15px;
 }
 
-.btn {
-  margin: 10px;
+button {
+  margin: 15px;
+  height: 50px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 ::placeholder {
