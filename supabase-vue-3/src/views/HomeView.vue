@@ -2,13 +2,24 @@
 import { supabase } from "../supabase";
 import { ref, watch } from "vue";
 import GameCard from "../components/GameCard.vue";
-
+Poop();
 let description_content = ref("");
 const games = ref("");
 const RAWG_API_KEY = "6c361a8e1cbd4e54968bb6859e285e08";
 let page = ref("1");
 let response_content = ref("");
+async function Poop() {
+  const { data, error } = await supabase.from("like_system").select();
 
+  let aa = await supabase.from("like_system").select();
+  let LikeData = aa.data;
+
+  if (data) {
+    LikeData.forEach((el) => {
+      document.querySelector(`#H${el.id}`).classList.add(`liked`);
+    });
+  }
+}
 async function getGames(page) {
   const res = await fetch(
     `https://api.rawg.io/api/games?dates=2022-01-01%2C2022-12-30&key=${RAWG_API_KEY}&page=${page.value}&page_size=39&platforms=18%2C1%2C7&ordering=rating-`
@@ -28,7 +39,7 @@ async function Jump() {
     getGames(page);
   }
   document.querySelector(".foward").disabled = false;
-  await Poop();
+  // await Poop();
   return page.value;
 }
 async function Fall() {
@@ -39,22 +50,10 @@ async function Fall() {
     getGames(page);
   }
   document.querySelector(".backward").disabled = false;
-  await Poop();
+  // await Poop();
   return page.value;
 }
-async function Poop() {
-  const { data, error } = await supabase.from("like_system").select();
 
-  let aa = await supabase.from("like_system").select();
-  let LikeData = aa.data;
-
-  // console.log(LikeData[0].id);
-  if (data) {
-    LikeData.forEach((el) => {
-      document.querySelector(`.H${el.id}`).classList.add(`liked`);
-    });
-  }
-}
 function ClosePopUp() {
   document.querySelector(".GameBox").classList.add("Showit");
   document.querySelector(".GameBox").classList.remove("Hideit");
@@ -75,10 +74,16 @@ async function PopIt(event) {
   console.log(res.url);
   description_content.value = await res.json();
 }
+const awesome = ref("");
 </script>
 
 <template>
-  <div class="Popup Hideit">
+  <button @click="awesome = !awesome">
+    <h1 v-if="awesome" style="color: red">Vue is awesome!</h1>
+    <h1 v-else>Oh no 😢</h1>
+  </button>
+
+  <!-- <div class="Popup Hideit">
     <h1>
       {{ description_content.name }}
     </h1>
@@ -110,11 +115,10 @@ async function PopIt(event) {
       {{ description.name }}
     </p>
     <button style="align-self: center" @click="ClosePopUp">X</button>
-  </div>
+  </div> -->
 
   <div class="GameBox flex">
     <GameCard
-      @click="PopIt"
       v-for="response in response_content.results"
       :Game="response"
       :title="response.name"
