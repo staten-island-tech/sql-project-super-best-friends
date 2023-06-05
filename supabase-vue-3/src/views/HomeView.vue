@@ -1,4 +1,5 @@
 <script async setup>
+import { supabase } from "../supabase";
 import { ref, watch } from "vue";
 import GameCard from "../components/GameCard.vue";
 
@@ -14,10 +15,12 @@ async function getGames(page) {
   );
   console.log(res.url);
   response_content.value = await res.json();
-  response_content.removeIf((i) => i.background_image() == null);
+  // response_content = Object.values(response_content).filter(
+  //   (i) => i.background_image == null
+  // );
 }
 getGames(page);
-function Jump() {
+async function Jump() {
   if (page.value >= 10) {
     document.querySelector(".foward").disabled = true;
   } else if (page.value <= 10) {
@@ -25,9 +28,10 @@ function Jump() {
     getGames(page);
   }
   document.querySelector(".foward").disabled = false;
+  await Poop();
   return page.value;
 }
-function Fall() {
+async function Fall() {
   if (page.value <= 1) {
     document.querySelector(".backward").disabled = true;
   } else if (page.value >= 2) {
@@ -35,8 +39,21 @@ function Fall() {
     getGames(page);
   }
   document.querySelector(".backward").disabled = false;
-
+  await Poop();
   return page.value;
+}
+async function Poop() {
+  const { data, error } = await supabase.from("like_system").select();
+
+  let aa = await supabase.from("like_system").select();
+  let LikeData = aa.data;
+
+  // console.log(LikeData[0].id);
+  if (data) {
+    LikeData.forEach((el) => {
+      document.querySelector(`.H${el.id}`).classList.add(`liked`);
+    });
+  }
 }
 function ClosePopUp() {
   document.querySelector(".GameBox").classList.add("Showit");
@@ -94,7 +111,7 @@ async function PopIt(event) {
     </p>
     <button style="align-self: center" @click="ClosePopUp">X</button>
   </div>
-  
+
   <div class="GameBox flex">
     <GameCard
       @click="PopIt"
