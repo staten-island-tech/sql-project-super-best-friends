@@ -3,7 +3,7 @@
     <router-link :to="DataPath"> {{ Game.name }}</router-link>
 
     <img :id="Game.id" :src="Game.background_image" :alt="Game.id" />
-    <p @click="Liking">
+    <p class="heart" @click="Liking">
       <h1 v-if="Liked">♥</h1>
       <h1 v-else style="color: red">♥</h1>
     </p>
@@ -62,5 +62,9 @@ img {
 .card:hover {
   transform: scale(1.05);
   cursor: pointer;
+}
+
+.heart{
+  user-select: none;
 }
 </style>
