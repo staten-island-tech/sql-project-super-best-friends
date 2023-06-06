@@ -5,7 +5,7 @@ import HomeView from "./views/HomeView.vue";
 import { onMounted, ref } from "vue";
 // import Account from "./components/AccountLog.vue";
 // import Auth from "./components/AuthLog.vue";
-// import { supabase } from "./supabase.js";
+import { supabase } from "./supabase.js";
 
 // const session = ref(false);
 
