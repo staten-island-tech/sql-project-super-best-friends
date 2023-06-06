@@ -1,5 +1,5 @@
 <template>
-  <div class="thing">
+  <div class="Container">
     <h1>
       {{ Game.name }}
     </h1>
@@ -18,6 +18,7 @@
     </p>
     <h3>Platforms</h3>
     <hr />
+
     <p v-for="G in Game.platforms">
       {{ G.platform.name }}
     </p>
@@ -26,12 +27,16 @@
     <p v-for="G in Game.genres">
       {{ G.name }}
     </p>
-    <button style="align-self: center">X</button>
+    <RouterLink to="/" style="align-self: center"><h1>X</h1></RouterLink>
   </div>
 </template>
 
 <style scoped>
-.thing {
+img {
+  height: 50vh;
+}
+
+.Container {
   color: white;
   background: rgba(0, 0, 0, 0.3);
 }

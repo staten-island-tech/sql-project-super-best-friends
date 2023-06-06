@@ -1,9 +1,14 @@
 <template>
-  <div class="card" :id="Game.id">
+  <div class="card">
     <router-link :to="DataPath"> {{ Game.name }}</router-link>
 
+<<<<<<< Updated upstream
     <img :id="Game.id" :src="Game.background_image" :alt="Game.id" />
     <p class="heart" @click="checkExists">
+=======
+    <img :src="Game.background_image" :alt="Game.id" />
+    <p class="heart" :id="Game.id" @click="Liking">
+>>>>>>> Stashed changes
       <h1 v-if="Liked">♥</h1>
       <h1 v-else style="color: red">♥</h1>
     </p>
