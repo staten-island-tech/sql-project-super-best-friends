@@ -1,11 +1,12 @@
 <template>
   <div class="card">
     <router-link :to="DataPath"> {{ Game.name }}</router-link>
-
+    <h1>{{ StoringLikes }}</h1>
+    <!-- <button :id="Game.id" @click="handleItemClick($event)">{{AA}}</button> -->
     <img :id="Game.id" :src="Game.background_image" :alt="Game.id" />
     <p  @click="Liking">
-      <h1 :id="Game.id" :class="Game.name" @click="checkExists" v-if="Liked">♥</h1>
-      <h1 :id="Game.id" :class="Game.name" @click="checkExists" v-else style="color: red">♥</h1>
+      <h1 :id="Game.id" :class="Game.name" @click="AintExist" v-if="Unliked" >♥</h1>
+      <h1 :id="Game.id" :class="Game.name" @click="Exists" v-else style="color: red" >♥</h1>
     </p>
   </div>
 </template>
@@ -15,12 +16,19 @@ Clean up Css a bit
 Make PopUp Card  -->
 <script setup>
 //Imports
+import { LikeStore } from "../stores/Like";
 import { ref } from "vue";
 import { computed } from "vue";
 import { supabase } from "../supabase";
 import { RouterLink, RouterView } from "vue-router";
 
 //Refs
+let StoringLikes = {}
+const handleItemClick = (event) => {
+  const id = event.target.id
+  StoreLike.PushLike(id);
+};
+const StoreLike = LikeStore();
 
 async function checkExists(event) {
   // Liked.value = !Liked.value
@@ -43,21 +51,25 @@ async function checkExists(event) {
   }
 }
 async function Exists(event) {
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from("like_system")
     .delete()
     .eq("id", event.target.id);
-  console.log("Existed Deleted");
+
+    console.log("Added to Supabase");
 }
 async function AintExist(event) {
   const { error } = await supabase
     .from("like_system")
     .insert({ id: event.target.id, name: event.target.classList[0] });
-  console.log("Aint exist Added");
+    if(!StoringLikes.contains(event.target.id)){
+      StoringLikes.push(event.target.id)
+    }
+  console.log("Deleted from Supabase");
 }
-let Liked = ref(true);
+let Unliked = ref(true);
 function Liking(){
-  Liked.value = !Liked.value
+  Unliked.value = !Unliked.value
 }
 
 const props = defineProps({

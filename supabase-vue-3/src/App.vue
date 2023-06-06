@@ -3,25 +3,19 @@ import { RouterLink, RouterView } from "vue-router";
 
 import HomeView from "./views/HomeView.vue";
 import { onMounted, ref } from "vue";
-// import Account from "./components/AccountLog.vue";
-// import Auth from "./components/AuthLog.vue";
+import { LikeStore } from "./stores/Like";
+
 import { supabase } from "./supabase.js";
 
-// const session = ref(false);
+const StoreLike = LikeStore();
 
 onMounted(() => {
   console.log("Poo");
-  // supabase.auth.getSession().then(({ data }) => {
-  //   session.value = data.session;
-  // });
-
-  // supabase.auth.onAuthStateChange((_, _session) => {
-  //   session.value = _session;
-  // });
 });
 </script>
 
 <template>
+  <h1>{{ StoreLike.Like }}</h1>
   <nav class="container">
     <li><RouterLink to="/"> Home</RouterLink></li>
 
@@ -31,10 +25,6 @@ onMounted(() => {
   <hr />
 
   <RouterView />
-  <div class="container">
-    <Account v-if="session" :session="session" />
-    <Auth v-else />
-  </div>
 </template>
 
 <style scoped>
