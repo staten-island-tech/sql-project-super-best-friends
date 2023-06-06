@@ -1,8 +1,12 @@
 <template>
   <div class="card" :id="Game.id">
-    <p :id="Game.id">{{ Game.name }}</p>
+    <!-- <nav>
+      <RouterLink :to="GamePath">{{ Game.name }}</RouterLink>
+    </nav> -->
+
+    <h1>{{ Game.name }}</h1>
     <img :id="Game.id" :src="Game.background_image" :alt="Game.id" />
-    <!-- <h2 @click="checkExists" :class="Game.name" :id="`H` + Game.id">♥</h2> -->
+    <h2 @click="checkExists" :class="Game.name" :id="`H` + Game.id">♥</h2>
     <button @click="UnLiked = !UnLiked">
       <h1 v-if="UnLiked">♥</h1>
       <h1 v-else style="color: red">♥</h1>
@@ -14,16 +18,19 @@
 'Liking One Stays on different page 
  -->
 <script async setup>
-import { ref, watch } from "vue";
+import { RouterLink } from "vue-router";
+import { ref, computed } from "vue";
 import { supabase } from "../supabase";
 // Poop();
 const UnLiked = ref(true);
 const props = defineProps({
   Game: Object,
-  title: String,
-  summary: String,
-  picture: String,
 });
+
+// const GamePath = computed(() => {
+//   console.log(`/DesData/${props.Game.id}`);
+//   return `/DesData/${props.Game.id}`;
+// });
 // async function PopIt(event) {
 //   console.log(event.target.id);
 //   document.querySelector(".Popup").classList.remove("Hideit");
@@ -55,39 +62,39 @@ const props = defineProps({
 
 // console.log(await supabase.from("like_system").select().eq("id", 685577));
 
-async function checkExists(event) {
-  event.stopPropagation();
-  const Id = event.target.id;
+// async function checkExists(event) {
+//   event.stopPropagation();
+//   const Id = event.target.id;
 
-  // Query the table to check if the record ID exists
-  const { data, error } = await supabase
-    .from("like_system")
-    .select("*")
-    .eq("id", Id)
-    .single();
+//   // Query the table to check if the record ID exists
+//   const { data, error } = await supabase
+//     .from("like_system")
+//     .select("*")
+//     .eq("id", Id)
+//     .single();
 
-  if (data) {
-    // Record exists
+//   if (data) {
+//     // Record exists
 
-    await Exists(event);
-  } else if (error) {
-    // Record does not exist
-    await AintExist(event);
-  }
-}
-async function Exists(event) {
-  const { error } = await supabase
-    .from("like_system")
-    .delete()
-    .eq("id", event.target.id);
-  console.log("Existed Deleted");
-}
-async function AintExist(event) {
-  const { error } = await supabase
-    .from("like_system")
-    .insert({ id: event.target.id, name: event.target.classList[0] });
-  console.log("Aint exist Added");
-}
+//     await Exists(event);
+//   } else if (error) {
+//     // Record does not exist
+//     await AintExist(event);
+//   }
+// }
+// async function Exists(event) {
+//   const { error } = await supabase
+//     .from("like_system")
+//     .delete()
+//     .eq("id", event.target.id);
+//   console.log("Existed Deleted");
+// }
+// async function AintExist(event) {
+//   const { error } = await supabase
+//     .from("like_system")
+//     .insert({ id: event.target.id, name: event.target.classList[0] });
+//   console.log("Aint exist Added");
+// }
 </script>
 
 <style scoped>

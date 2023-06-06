@@ -1,4 +1,5 @@
 <script setup>
+import DesData from "./views/DesData.vue";
 import HomeView from "./views/HomeView.vue";
 import { onMounted, ref } from "vue";
 import Account from "./components/AccountLog.vue";
@@ -19,6 +20,8 @@ onMounted(() => {
 </script>
 
 <template>
+  <RouterLink to="/DesData"> Sign-In</RouterLink>
+  <DesData></DesData>
   <HomeView></HomeView>
 
   <div class="container" style="padding: 50px 0 100px 0">

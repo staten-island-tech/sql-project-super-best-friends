@@ -26,7 +26,7 @@ async function getGames(page) {
   );
   console.log(res.url);
   response_content.value = await res.json();
-  console.log(response_content);
+  // console.log(response_content);
   // response_content = Object.values(response_content).filter(
   //   (i) => i.background_image == null
   // );
