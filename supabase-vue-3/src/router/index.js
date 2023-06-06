@@ -32,6 +32,11 @@ const router = createRouter({
       name: "Hello World",
       component: () => import("../views/HelloWorld.vue"),
     },
+    {
+      path: "/DesData/:id",
+      name: "DesData",
+      component: () => import("../views/DesData.vue"),
+    },
   ],
 });
 

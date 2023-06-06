@@ -28,6 +28,7 @@ onMounted(() => {
     <li><RouterLink to="/GameCard"> Game Card</RouterLink></li>
     <li><RouterLink to="/sign-in"> Sign-In</RouterLink></li>
     <li><RouterLink to="/sign-up"> Sign-Up</RouterLink></li>
+    <li><RouterLink to="/DesData"> Description</RouterLink></li>
   </nav>
   <hr />
 
