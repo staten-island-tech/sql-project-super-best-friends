@@ -14,7 +14,7 @@ async function getGames(page) {
   );
   console.log(res.url);
   response_content.value = await res.json();
-  response_content.removeIf((i) => i.background_image() == null);
+  // response_content.removeIf((i) => i.background_image() == null);
 }
 getGames(page);
 function Jump() {
@@ -38,30 +38,30 @@ function Fall() {
 
   return page.value;
 }
-function ClosePopUp() {
-  document.querySelector(".GameBox").classList.add("Showit");
-  document.querySelector(".GameBox").classList.remove("Hideit");
-  document.querySelector(".Buttons").classList.add("Showit");
-  document.querySelector(".Buttons").classList.remove("Hideit");
-  document.querySelector(".Popup").classList.add("Hideit");
-}
-async function PopIt(event) {
-  console.log(event.target.id);
-  document.querySelector(".Popup").classList.remove("Hideit");
-  document.querySelector(".Popup").classList.add("Showit");
-  document.querySelector(".GameBox").classList.add("Hideit");
-  document.querySelector(".Buttons").classList.add("Hideit");
+// function ClosePopUp() {
+//   document.querySelector(".GameBox").classList.add("Showit");
+//   document.querySelector(".GameBox").classList.remove("Hideit");
+//   document.querySelector(".Buttons").classList.add("Showit");
+//   document.querySelector(".Buttons").classList.remove("Hideit");
+//   document.querySelector(".Popup").classList.add("Hideit");
+// }
+// async function PopIt(event) {
+//   console.log(event.target.id);
+//   document.querySelector(".Popup").classList.remove("Hideit");
+//   document.querySelector(".Popup").classList.add("Showit");
+//   document.querySelector(".GameBox").classList.add("Hideit");
+//   document.querySelector(".Buttons").classList.add("Hideit");
 
-  const res = await fetch(
-    `https://api.rawg.io/api/games/${event.target.id}?dates=2022-01-01%2C2022-12-30&key=${RAWG_API_KEY}&page_size=39&platforms=18%2C1%2C7&ordering=rating-`
-  );
-  console.log(res.url);
-  description_content.value = await res.json();
-}
+//   const res = await fetch(
+//     `https://api.rawg.io/api/games/${event.target.id}?dates=2022-01-01%2C2022-12-30&key=${RAWG_API_KEY}&page_size=39&platforms=18%2C1%2C7&ordering=rating-`
+//   );
+//   console.log(res.url);
+//   description_content.value = await res.json();
+// }
 </script>
 
 <template>
-  <div class="Popup Hideit">
+  <!-- <div class="Popup Hideit">
     <h1>
       {{ description_content.name }}
     </h1>
@@ -93,11 +93,10 @@ async function PopIt(event) {
       {{ description.name }}
     </p>
     <button style="align-self: center" @click="ClosePopUp">X</button>
-  </div>
+  </div> -->
 
   <div class="GameBox flex">
     <GameCard
-      @click="PopIt"
       v-for="response in response_content.results"
       :Game="response"
       :title="response.name"

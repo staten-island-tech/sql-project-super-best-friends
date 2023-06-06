@@ -1,36 +1,36 @@
 <template>
   <div class="card" :id="Game.id">
-    <p :id="Game.id">{{ Game.name }}</p>
+    <router-link :to="DataPath"> {{ Game.name }}</router-link>
+
     <img :id="Game.id" :src="Game.background_image" :alt="Game.id" />
-    <h2 @click="Like" class="unliked">♥</h2>
+    <p @click="Liking">
+      <h1 v-if="Liked">♥</h1>
+      <h1 v-else style="color: red">♥</h1>
+    </p>
   </div>
 </template>
 <!-- Bugs
 'Liking One Stays on different page 
 Clean up Css a bit 
 Make PopUp Card  -->
-<script>
-export default {
-  name: "Card",
-  props: {
-    Game: Object,
-    title: String,
-    summary: String,
-    picture: String,
-  },
-  methods: {
-    Like: function (event) {
-      event.stopPropagation();
-      if (event.target.classList.contains("unliked")) {
-        event.target.classList.remove("unliked");
-        event.target.classList.add("liked");
-      } else {
-        event.target.classList.remove("liked");
-        event.target.classList.add("unliked");
-      }
-    },
-  },
-};
+<script setup>
+//Imports
+import { ref } from "vue";
+import { computed } from "vue";
+import { RouterLink, RouterView } from "vue-router";
+
+//Refs
+let Liked = ref(true);
+function Liking(){
+  Liked.value = !Liked.value
+}
+
+const props = defineProps({
+  Game: Object,
+});
+const DataPath = computed(() => {
+  return `/DesData/${props.Game.id}`;
+});
 </script>
 
 <style scoped>

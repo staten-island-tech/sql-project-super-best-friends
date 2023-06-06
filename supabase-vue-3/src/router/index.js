@@ -5,13 +5,7 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "games",
-      component: () => import("../views/Home.vue"),
-    },
-
-    {
-      path: "/GameCard",
-      name: "Game Cards",
+      name: "Home",
       component: () => import("../views/HomeView.vue"),
     },
 
@@ -27,11 +21,6 @@ const router = createRouter({
       component: () => import("../views/Sign-In.vue"),
     },
 
-    {
-      path: "/helloworld",
-      name: "Hello World",
-      component: () => import("../views/HelloWorld.vue"),
-    },
     {
       path: "/DesData/:id",
       name: "DesData",
