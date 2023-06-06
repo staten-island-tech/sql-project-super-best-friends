@@ -2,15 +2,10 @@
   <div class="card">
     <router-link :to="DataPath"> {{ Game.name }}</router-link>
 
-<<<<<<< Updated upstream
     <img :id="Game.id" :src="Game.background_image" :alt="Game.id" />
-    <p class="heart" @click="checkExists">
-=======
-    <img :src="Game.background_image" :alt="Game.id" />
-    <p class="heart" :id="Game.id" @click="Liking">
->>>>>>> Stashed changes
-      <h1 v-if="Liked">♥</h1>
-      <h1 v-else style="color: red">♥</h1>
+    <p  @click="Liking">
+      <h1 :id="Game.id" :class="Game.name" @click="checkExists" v-if="Liked">♥</h1>
+      <h1 :id="Game.id" :class="Game.name" @click="checkExists" v-else style="color: red">♥</h1>
     </p>
   </div>
 </template>
@@ -22,13 +17,13 @@ Make PopUp Card  -->
 //Imports
 import { ref } from "vue";
 import { computed } from "vue";
-
+import { supabase } from "../supabase";
 import { RouterLink, RouterView } from "vue-router";
 
 //Refs
 
 async function checkExists(event) {
-  Liked.value = !Liked.value
+  // Liked.value = !Liked.value
   const Id = event.target.id;
 
   // Query the table to check if the record ID exists
