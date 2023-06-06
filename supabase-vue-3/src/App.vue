@@ -1,7 +1,5 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./views/HelloWorld.vue";
-import GameCard from "./components/GameCard.vue";
 
 import HomeView from "./views/HomeView.vue";
 import { onMounted, ref } from "vue";
