@@ -1,7 +1,5 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./views/HelloWorld.vue";
-import GameCard from "./components/GameCard.vue";
 
 import HomeView from "./views/HomeView.vue";
 import { onMounted, ref } from "vue";
@@ -9,16 +7,17 @@ import { onMounted, ref } from "vue";
 // import Auth from "./components/AuthLog.vue";
 // import { supabase } from "./supabase.js";
 
-const session = ref(false);
+// const session = ref(false);
 
 onMounted(() => {
-  supabase.auth.getSession().then(({ data }) => {
-    session.value = data.session;
-  });
+  console.log("Poo");
+  // supabase.auth.getSession().then(({ data }) => {
+  //   session.value = data.session;
+  // });
 
-  supabase.auth.onAuthStateChange((_, _session) => {
-    session.value = _session;
-  });
+  // supabase.auth.onAuthStateChange((_, _session) => {
+  //   session.value = _session;
+  // });
 });
 </script>
 

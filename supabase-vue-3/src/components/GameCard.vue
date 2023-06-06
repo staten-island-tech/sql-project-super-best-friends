@@ -17,6 +17,7 @@ Make PopUp Card  -->
 //Imports
 import { ref } from "vue";
 import { computed } from "vue";
+
 import { RouterLink, RouterView } from "vue-router";
 
 //Refs
