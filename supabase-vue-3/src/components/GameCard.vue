@@ -5,7 +5,7 @@
     <!-- <button :id="Game.id" @click="handleItemClick($event)">{{AA}}</button> -->
     <img :id="Game.id" :src="Game.background_image" :alt="Game.id" />
     <p  @click="Liking">
-      <h1 :id="Game.id" :class="Game.name" @click="handleItemClick" v-if="Unliked" >♥</h1>
+      <h1 :id="Game.id" :class="Game.name" @click="checkExists" v-if="Unliked" >♥</h1>
       <h1 :id="Game.id" :class="Game.name" @click="checkExists" v-else style="color: red" >♥</h1>
     </p>
   </div>

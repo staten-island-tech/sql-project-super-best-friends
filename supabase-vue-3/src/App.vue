@@ -9,9 +9,7 @@ import { supabase } from "./supabase.js";
 
 const StoreLike = LikeStore();
 
-onMounted(() => {
-  console.log("Poo");
-});
+onMounted(() => {});
 </script>
 
 <template>

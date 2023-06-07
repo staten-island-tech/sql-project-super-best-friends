@@ -7,7 +7,12 @@ export const LikeStore = defineStore("Like", {
   },
   actions: {
     PushLike(id) {
-      this.Like.push(id);
+      if (this.Like.includes(id)) {
+        this.Like.pop();
+        console.log("Already Liked");
+      } else {
+        this.Like.push(id);
+      }
     },
   },
 });
