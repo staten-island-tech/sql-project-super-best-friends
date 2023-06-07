@@ -26,6 +26,7 @@
 <script setup>
 import { ref } from "vue";
 import { supabase } from "../supabase.js";
+// import { defineStore } from "pinia";
 
 const email = ref("");
 const password = ref("");
@@ -45,6 +46,19 @@ async function signIn() {
     console.log("An error occurred during signin", error);
   }
 }
+
+// export const logins = defineStore("account", {
+//   // arrow function recommended for full type inference
+//   state: () => {
+//     return {
+//       // all these properties will have their type inferred automatically
+//       count: 0,
+//       email: email,
+//       password: password,
+//       isSignedIn: true,
+//     };
+//   },
+// });
 </script>
 
 <style scoped>
