@@ -3,7 +3,7 @@ import { RouterLink, RouterView } from "vue-router";
 
 import HomeView from "./views/HomeView.vue";
 import { onMounted, ref } from "vue";
-import { LikeStore } from "./stores/Like";
+import { LikeStore } from "./stores/LikeStore";
 
 import { supabase } from "./supabase.js";
 

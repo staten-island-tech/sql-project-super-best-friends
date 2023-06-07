@@ -5,8 +5,8 @@
     <!-- <button :id="Game.id" @click="handleItemClick($event)">{{AA}}</button> -->
     <img :id="Game.id" :src="Game.background_image" :alt="Game.id" />
     <p  @click="Liking">
-      <h1 :id="Game.id" :class="Game.name" @click="AintExist" v-if="Unliked" >♥</h1>
-      <h1 :id="Game.id" :class="Game.name" @click="Exists" v-else style="color: red" >♥</h1>
+      <h1 :id="Game.id" :class="Game.name" @click="handleItemClick" v-if="Unliked" >♥</h1>
+      <h1 :id="Game.id" :class="Game.name" @click="checkExists" v-else style="color: red" >♥</h1>
     </p>
   </div>
 </template>
@@ -16,7 +16,7 @@ Clean up Css a bit
 Make PopUp Card  -->
 <script setup>
 //Imports
-import { LikeStore } from "../stores/Like";
+import { LikeStore } from "../stores/LikeStore";
 import { ref } from "vue";
 import { computed } from "vue";
 import { supabase } from "../supabase";
@@ -56,16 +56,16 @@ async function Exists(event) {
     .delete()
     .eq("id", event.target.id);
 
-    console.log("Added to Supabase");
+    console.log("Deleted from Supabase");
 }
 async function AintExist(event) {
   const { error } = await supabase
     .from("like_system")
     .insert({ id: event.target.id, name: event.target.classList[0] });
-    if(!StoringLikes.contains(event.target.id)){
-      StoringLikes.push(event.target.id)
-    }
-  console.log("Deleted from Supabase");
+    // if(!StoringLikes.contains(event.target.id)){
+    //   StoringLikes.push(event.target.id)
+    // }
+  console.log("Added to Supabase");
 }
 let Unliked = ref(true);
 function Liking(){
