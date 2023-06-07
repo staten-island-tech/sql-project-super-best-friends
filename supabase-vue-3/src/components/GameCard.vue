@@ -1,12 +1,12 @@
 <template>
   <div class="card">
     <router-link :to="DataPath"> {{ Game.name }}</router-link>
-    <h1>{{ StoringLikes }}</h1>
+    
     <!-- <button :id="Game.id" @click="handleItemClick($event)">{{AA}}</button> -->
-    <img :id="Game.id" :src="Game.background_image" :alt="Game.id" />
+    <img :src="Game.background_image" :alt="Game.id" />
     <p  @click="Liking">
-      <h1 :id="Game.id" :class="Game.name" @click="checkExists" v-if="Unliked" >♥</h1>
-      <h1 :id="Game.id" :class="Game.name" @click="checkExists" v-else style="color: red" >♥</h1>
+      <h1 :id="Game.id" :class="Game.name" @click="AintExist" v-if="Liked" style="color: red" >♥</h1>
+      <h1 :id="Game.id" :class="Game.name" @click="Exists" v-else  >♥</h1>
     </p>
   </div>
 </template>
@@ -23,7 +23,7 @@ import { supabase } from "../supabase";
 import { RouterLink, RouterView } from "vue-router";
 
 //Refs
-let StoringLikes = {}
+
 const handleItemClick = (event) => {
   const id = event.target.id
   StoreLike.PushLike(id);
@@ -62,14 +62,11 @@ async function AintExist(event) {
   const { error } = await supabase
     .from("like_system")
     .insert({ id: event.target.id, name: event.target.classList[0] });
-    // if(!StoringLikes.contains(event.target.id)){
-    //   StoringLikes.push(event.target.id)
-    // }
   console.log("Added to Supabase");
 }
-let Unliked = ref(true);
+let Liked = ref(false);
 function Liking(){
-  Unliked.value = !Unliked.value
+  Liked.value = !Liked.value
 }
 
 const props = defineProps({

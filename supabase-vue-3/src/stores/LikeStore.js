@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+
+import { supabase } from "../supabase.js";
 export const LikeStore = defineStore("Like", {
   state: () => ({ Like: [] }),
   getters: {
@@ -13,6 +14,20 @@ export const LikeStore = defineStore("Like", {
       } else {
         this.Like.push(id);
       }
+    },
+    async LoadedLike() {
+      const { data, error } = await supabase.from("like_system").select();
+      if (data) {
+        data.forEach((el) => {
+          this.Like.push(el.id);
+          // document.getElementById(el.id).Unliked.value = true;
+        });
+
+        console.log(data);
+      }
+    },
+    Liking() {
+      Unliked.value = !Unliked.value;
     },
   },
 });

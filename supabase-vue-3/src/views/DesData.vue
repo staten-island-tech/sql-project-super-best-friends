@@ -51,7 +51,6 @@ export default {
     };
   },
   mounted: async function () {
-    console.log(this.$route.params.id);
     await this.GetGameDes();
   },
   methods: {
@@ -61,7 +60,6 @@ export default {
         `https://api.rawg.io/api/games/${this.$route.params.id}?dates=2022-01-01%2C2022-12-30&key=${RAWG_API_KEY}&page_size=39&platforms=18%2C1%2C7&ordering=rating-`
       );
 
-      console.log(this.$route.params.id);
       let data = await res.json();
       this.Game = data;
     },

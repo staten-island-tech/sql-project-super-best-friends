@@ -9,7 +9,11 @@ import { supabase } from "./supabase.js";
 
 const StoreLike = LikeStore();
 
-onMounted(() => {});
+onMounted(() => {
+  StoreLike.LoadedLike();
+
+  console.log("Hey  ");
+});
 </script>
 
 <template>
