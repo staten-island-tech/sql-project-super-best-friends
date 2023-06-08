@@ -1,0 +1,14 @@
+<template>
+  <h1>poo</h1>
+</template>
+
+<script>
+// import GameCard from "./components/GameCard.vue";
+export default {
+  setup() {
+    return {};
+  },
+};
+</script>
+
+<style scoped></style>
