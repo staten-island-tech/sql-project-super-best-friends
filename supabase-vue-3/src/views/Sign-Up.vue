@@ -36,12 +36,12 @@ async function signUp() {
     const { data, error } = await supabase.auth.signUp({
       email: email.value,
       password: password.value,
+      email_confirm: true,
     });
-    if (error) {
-      console.log(error);
-      return;
-    }
-    console.log(data);
+
+    await supabase
+      .from("account_system")
+      .insert({ UserEmail: email.value, UserPass: password.value });
   } catch (error) {
     console.log("An error occurred during signup", error);
   }

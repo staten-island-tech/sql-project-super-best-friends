@@ -28,7 +28,9 @@ import { ref } from "vue";
 import { supabase } from "../supabase.js";
 import router from "../router/index.js";
 // import { defineStore } from "pinia";
+import { AuthStore } from "../stores/AuthStore";
 
+const StoreAuth = AuthStore();
 const email = ref("");
 const password = ref("");
 
@@ -38,10 +40,11 @@ async function signIn() {
       email: email.value,
       password: password.value,
     });
-    if (error) {
-      console.log(error);
-      return;
-    }
+    let {
+      data: { user },
+    } = await supabase.auth.getUser();
+    StoreAuth.loadUser(user.id);
+
     console.log(data);
     router.push("GameCard");
   } catch (error) {

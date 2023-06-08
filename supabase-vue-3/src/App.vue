@@ -1,31 +1,26 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
-import GameCard from "./components/GameCard.vue";
 
 import HomeView from "./views/HomeView.vue";
 import { onMounted, ref } from "vue";
-// import Account from "./components/AccountLog.vue";
-// import Auth from "./components/AuthLog.vue";
+import { LikeStore } from "./stores/LikeStore";
+
 import { supabase } from "./supabase.js";
 
-const session = ref(false);
+const StoreLike = LikeStore();
 
 onMounted(() => {
-  console.log("game");
-  // supabase.auth.getSession().then(({ data }) => {
-  //   session.value = data.session;
-  // });
+  StoreLike.LoadedLike();
 
-  // supabase.auth.onAuthStateChange((_, _session) => {
-  //   session.value = _session;
-  // });
+  console.log("Hey  ");
 });
 </script>
 
 <template>
+  <h1>{{ StoreLike.Like }}</h1>
   <nav class="container">
     <li><RouterLink to="/"> Home</RouterLink></li>
-    <li><RouterLink to="/GameCard"> Game Card</RouterLink></li>
+
     <li><RouterLink to="/sign-in"> Sign-In</RouterLink></li>
     <li><RouterLink to="/sign-up"> Sign-Up</RouterLink></li>
   </nav>
@@ -33,10 +28,6 @@ onMounted(() => {
 
   <div class="router">
     <RouterView />
-    <div class="container">
-      <Account v-if="session" :session="session" />
-      <Auth v-else />
-    </div>
   </div>
 </template>
 

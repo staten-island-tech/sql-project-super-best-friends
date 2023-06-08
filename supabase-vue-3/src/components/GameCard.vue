@@ -1,39 +1,81 @@
 <template>
-  <div class="card" :id="Game.id">
-    <p :id="Game.id">{{ Game.name }}</p>
-    <img :id="Game.id" :src="Game.background_image" :alt="Game.id" />
-    <h2 @click="Like" class="unliked">♥</h2>
+  <div class="card">
+    <router-link :to="DataPath"> {{ Game.name }}</router-link>
+    
+    <!-- <button :id="Game.id" @click="handleItemClick($event)">{{AA}}</button> -->
+    <img :src="Game.background_image" :alt="Game.id" />
+    <p  @click="Liking">
+      <h1 :id="Game.id" :class="Game.name" @click="AintExist" v-if="Liked" style="color: red" >♥</h1>
+      <h1 :id="Game.id" :class="Game.name" @click="Exists" v-else  >♥</h1>
+    </p>
   </div>
 </template>
 <!-- Bugs
 'Liking One Stays on different page 
 Clean up Css a bit 
 Make PopUp Card  -->
-<script>
+<script setup>
+//Imports
+
+import { LikeStore } from "../stores/LikeStore";
 import { ref } from "vue";
-let id = ref("");
-const RAWG_API_KEY = "6c361a8e1cbd4e54968bb6859e285e08";
-export default {
-  name: "Card",
-  props: {
-    Game: Object,
-    title: String,
-    summary: String,
-    picture: String,
-  },
-  methods: {
-    Like: function (event) {
-      event.stopPropagation();
-      if (event.target.classList.contains("unliked")) {
-        event.target.classList.remove("unliked");
-        event.target.classList.add("liked");
-      } else {
-        event.target.classList.remove("liked");
-        event.target.classList.add("unliked");
-      }
-    },
-  },
+import { computed } from "vue";
+import { supabase } from "../supabase";
+import { RouterLink, RouterView } from "vue-router";
+
+//Refs
+
+const handleItemClick = (event) => {
+  const id = event.target.id
+  StoreLike.PushLike(id);
 };
+const StoreLike = LikeStore();
+
+async function checkExists(event) {
+  // Liked.value = !Liked.value
+  const Id = event.target.id;
+
+  // Query the table to check if the record ID exists
+  const { data, error } = await supabase
+    .from("like_system")
+    .select("*")
+    .eq("id", Id)
+    .single();
+
+  if (data) {
+    // Record exists
+
+    await Exists(event);
+  } else if (error) {
+    // Record does not exist
+    await AintExist(event);
+  }
+}
+async function Exists(event) {
+  const { data, error } = await supabase
+    .from("like_system")
+    .delete()
+    .eq("id", event.target.id);
+
+    console.log("Deleted from Supabase");
+}
+async function AintExist(event) {
+  const { error } = await supabase
+    .from("like_system")
+    .insert({ id: event.target.id, name: event.target.classList[0] });
+  console.log("Added to Supabase");
+}
+let Liked = ref(false);
+function Liking(){
+  Liked.value = !Liked.value
+}
+
+const props = defineProps({
+  Game: Object,
+});
+const DataPath = computed(() => {
+  return `/DesData/${props.Game.id}`;
+});
 </script>
 
 <style scoped>
@@ -64,5 +106,9 @@ img {
 .card:hover {
   transform: scale(1.05);
   cursor: pointer;
+}
+
+.heart{
+  user-select: none;
 }
 </style>
