@@ -31,14 +31,22 @@ onMounted(() => {
   </nav>
   <hr />
 
-  <RouterView />
-  <div class="container">
-    <Account v-if="session" :session="session" />
-    <Auth v-else />
+  <div class="router">
+    <RouterView />
+    <div class="container">
+      <Account v-if="session" :session="session" />
+      <Auth v-else />
+    </div>
   </div>
 </template>
 
 <style scoped>
+.router {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .container {
   color: rgb(13, 26, 38);
   margin: 0;

@@ -34,8 +34,8 @@ const password = ref("");
 async function signUp() {
   try {
     const { data, error } = await supabase.auth.signUp({
-      email: email,
-      password: password,
+      email: email.value,
+      password: password.value,
     });
     if (error) {
       console.log(error);
@@ -67,9 +67,7 @@ body {
   justify-content: center;
 }
 .box {
-  width: 150%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 40vw;
   border-color: black;
   border-style: solid;
   border-width: 1.5px;

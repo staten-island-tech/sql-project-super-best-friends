@@ -16,7 +16,7 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: white;
   text-decoration: inherit;
 }
 a:hover {
@@ -25,7 +25,7 @@ a:hover {
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: white;
   text-decoration: inherit;
 }
 a:hover {
@@ -38,7 +38,9 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-image: url(https://wallpapers.com/images/hd/aesthetic-gaming-mrcp5e4kr24rf54h.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(/backgroundimg.jpg);
+  background-size: cover;
   position: relative;
 
   background-size: cover;

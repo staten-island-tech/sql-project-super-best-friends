@@ -26,6 +26,7 @@
 <script setup>
 import { ref } from "vue";
 import { supabase } from "../supabase.js";
+import router from "../router/index.js";
 // import { defineStore } from "pinia";
 
 const email = ref("");
@@ -34,14 +35,15 @@ const password = ref("");
 async function signIn() {
   try {
     const { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
+      email: email.value,
+      password: password.value,
     });
     if (error) {
       console.log(error);
       return;
     }
     console.log(data);
+    router.push("GameCard");
   } catch (error) {
     console.log("An error occurred during signin", error);
   }
@@ -80,9 +82,7 @@ body {
   justify-content: center;
 }
 .box {
-  width: 150%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 40vw;
   border-color: black;
   border-style: solid;
   border-width: 1.5px;
