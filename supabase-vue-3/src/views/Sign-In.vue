@@ -26,20 +26,23 @@
 <script setup>
 import { ref } from "vue";
 import { supabase } from "../supabase.js";
+import { AuthStore } from "../stores/AuthStore";
 
+const StoreAuth = AuthStore();
 const email = ref("");
 const password = ref("");
 
 async function signIn() {
   try {
     const { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
+      email: email.value,
+      password: password.value,
     });
-    if (error) {
-      console.log(error);
-      return;
-    }
+    let {
+      data: { user },
+    } = await supabase.auth.getUser();
+    StoreAuth.loadUser(user.id);
+
     console.log(data);
   } catch (error) {
     console.log("An error occurred during signin", error);

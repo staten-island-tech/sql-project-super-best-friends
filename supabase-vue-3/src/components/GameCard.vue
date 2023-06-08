@@ -16,6 +16,7 @@ Clean up Css a bit
 Make PopUp Card  -->
 <script setup>
 //Imports
+
 import { LikeStore } from "../stores/LikeStore";
 import { ref } from "vue";
 import { computed } from "vue";

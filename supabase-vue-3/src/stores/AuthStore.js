@@ -1,4 +1,6 @@
 import { defineStore } from "pinia";
+import { supabase } from "../supabase.js";
+
 export const AuthStore = defineStore({
   id: "auth",
   state: () => {
@@ -14,6 +16,7 @@ export const AuthStore = defineStore({
       this.currentUser = null;
     },
   },
+
   getters: {
     isAuthenticated() {
       return !!this.currentUser;
