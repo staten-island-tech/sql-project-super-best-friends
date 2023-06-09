@@ -5,6 +5,7 @@ import { onMounted, ref } from "vue";
 import { LikeStore } from "./stores/LikeStore";
 import { supabase } from "./supabase.js";
 import { AuthStore } from "./stores/AuthStore";
+import router from "./router";
 
 const StoreLike = LikeStore();
 const auth = AuthStore();
@@ -18,6 +19,7 @@ async function LogOut() {
   const { error } = await supabase.auth.signOut();
   console.log("user logged out");
   auth.currentUser = null;
+  router.push("/sign-in");
 }
 </script>
 
