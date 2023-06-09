@@ -39,6 +39,9 @@ async function LogOut() {
 </template>
 
 <style scoped>
+h1 {
+  color: white;
+}
 .logout-button {
   color: white;
   background-color: transparent;

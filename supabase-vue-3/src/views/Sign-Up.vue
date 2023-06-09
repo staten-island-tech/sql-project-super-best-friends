@@ -26,6 +26,7 @@
 <script setup>
 import { ref } from "vue";
 import { supabase } from "../supabase.js";
+import router from "../router/index.js";
 
 const email = ref("");
 const password = ref("");
@@ -41,6 +42,7 @@ async function signUp() {
     await supabase
       .from("account_system")
       .insert({ UserEmail: email.value, UserPass: password.value });
+    router.push("sign-in");
   } catch (error) {
     console.log("An error occurred during signup", error);
   }
