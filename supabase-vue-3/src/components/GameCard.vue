@@ -38,7 +38,7 @@ async function checkExists(event) {
 
   // Query the table to check if the record ID exists
   const { data, error } = await supabase
-    .from("like_system")
+    .from("likes")
     .select("*")
     .eq("id", Id)
     .single();
@@ -54,14 +54,14 @@ async function checkExists(event) {
 }
 async function Exists(event) {
   const { data, error } = await supabase
-    .from("like_system")
+    .from("likes")
     .delete()
     .match({id: event.target.id, user_id: StoreAuth.currentUser});
     console.log("Deleted from Supabase");
 }
 async function AintExist(event) {
   const { error } = await supabase
-    .from("like_system")
+    .from("likes")
     .insert({ id: event.target.id, name: event.target.classList[0], user_id: StoreAuth.currentUser });
   console.log("Added to Supabase");
 }

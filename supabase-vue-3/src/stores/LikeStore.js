@@ -16,7 +16,7 @@ export const LikeStore = defineStore("Like", {
       }
     },
     async LoadedLike() {
-      const { data, error } = await supabase.from("like_system").select();
+      const { data, error } = await supabase.from("likes").select();
       if (data) {
         data.forEach((el) => {
           this.Like.push(el.id);

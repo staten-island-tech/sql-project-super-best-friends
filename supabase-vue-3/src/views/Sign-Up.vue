@@ -40,7 +40,7 @@ async function signUp() {
     });
 
     await supabase
-      .from("account_system")
+      .from("accounts")
       .insert({ UserEmail: email.value, UserPass: password.value });
     router.push("sign-in");
   } catch (error) {
