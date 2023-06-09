@@ -26,6 +26,8 @@
 <script setup>
 import { ref } from "vue";
 import { supabase } from "../supabase.js";
+import router from "../router/index.js";
+// import { defineStore } from "pinia";
 import { AuthStore } from "../stores/AuthStore";
 
 const StoreAuth = AuthStore();
@@ -44,10 +46,24 @@ async function signIn() {
     StoreAuth.loadUser(user.id);
 
     console.log(data);
+    router.push("/");
   } catch (error) {
     console.log("An error occurred during signin", error);
   }
 }
+
+// export const logins = defineStore("account", {
+//   // arrow function recommended for full type inference
+//   state: () => {
+//     return {
+//       // all these properties will have their type inferred automatically
+//       count: 0,
+//       email: email,
+//       password: password,
+//       isSignedIn: true,
+//     };
+//   },
+// });
 </script>
 
 <style scoped>
@@ -69,9 +85,7 @@ body {
   justify-content: center;
 }
 .box {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 40vw;
   border-color: black;
   border-style: solid;
   border-width: 1.5px;

@@ -66,9 +66,7 @@ body {
   justify-content: center;
 }
 .box {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 40vw;
   border-color: black;
   border-style: solid;
   border-width: 1.5px;
