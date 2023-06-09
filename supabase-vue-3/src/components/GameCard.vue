@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <router-link class="title" :to="DataPath"> {{ Game.name }}</router-link>
+    <router-link :to="DataPath"> {{ Game.name }}</router-link>
     
     <!-- <button :id="Game.id" @click="handleItemClick($event)">{{AA}}</button> -->
     <img :src="Game.background_image" :alt="Game.name" />
@@ -80,14 +80,15 @@ const DataPath = computed(() => {
 
 <style scoped>
 img {
-  width: 90%;
+  width: 100%;
   height: 100%;
-  border-radius: 0.4rem;
+  object-fit: cover;
 }
 .card {
-  background-color: #36393e;
+  background-color: rgb(83, 80, 80);
   color: white;
   width: 25%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -95,7 +96,6 @@ img {
   margin: 30px 0;
   box-shadow: 0px 0px 0.625rem black;
   transition: 0.3s all;
-  border-radius: 0.4rem;
 }
 .liked {
   color: red;
@@ -110,15 +110,5 @@ img {
 
 .heart{
   user-select: none;
-  margin: 0;
-}
-
-.title {
-  font-size: 1.75rem;
-  margin-bottom: 15px;
-}
-
-h1{
-  margin: 0;
 }
 </style>

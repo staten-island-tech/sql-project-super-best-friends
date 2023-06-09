@@ -8,7 +8,7 @@ let response_content = ref("");
 
 async function getGames(page) {
   const res = await fetch(
-    `https://api.rawg.io/api/games?dates=2022-01-01%2C2022-12-30&key=${RAWG_API_KEY}&page=${page.value}&page_size=9&platforms=18%2C1%2C7&ordering=rating-`
+    `https://api.rawg.io/api/games?dates=2022-01-01%2C2022-12-30&key=${RAWG_API_KEY}&page=${page.value}&page_size=39&platforms=18%2C1%2C7&ordering=rating-`
   );
 
   response_content.value = await res.json();

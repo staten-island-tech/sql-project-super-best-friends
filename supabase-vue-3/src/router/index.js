@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { AuthStore } from "../stores/AuthStore";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,9 +7,6 @@ const router = createRouter({
       path: "/",
       name: "Home",
       component: () => import("../views/HomeView.vue"),
-      meta: {
-        requiresLogin: true,
-      },
     },
 
     {
@@ -33,16 +29,4 @@ const router = createRouter({
   ],
 });
 
-router.beforeEach((to, from, next) => {
-  const auth = AuthStore();
-  if (
-    to.matched.some((record) => record.meta.requiresLogin) &&
-    auth.currentUser === null
-  ) {
-    console.log(":p");
-    next("/sign-in");
-  } else {
-    next();
-  }
-});
 export default router;
