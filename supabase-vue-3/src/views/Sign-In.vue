@@ -46,7 +46,7 @@ async function signIn() {
     StoreAuth.loadUser(user.id);
 
     console.log(data);
-    router.push("GameCard");
+    router.push("/");
   } catch (error) {
     console.log("An error occurred during signin", error);
   }
