@@ -3,7 +3,7 @@
     <router-link :to="DataPath"> {{ Game.name }}</router-link>
     
     <!-- <button :id="Game.id" @click="handleItemClick($event)">{{AA}}</button> -->
-    <img :src="Game.background_image" :alt="Game.id" />
+    <img :src="Game.background_image" :alt="Game.name" />
     <p  @click="Liking">
       <h1 :id="Game.id" :class="Game.name" @click="AintExist" v-if="Liked" style="color: red" >♥</h1>
       <h1 :id="Game.id" :class="Game.name" @click="Exists" v-else  >♥</h1>

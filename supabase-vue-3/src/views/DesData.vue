@@ -27,7 +27,9 @@
     <p v-for="G in Game.genres">
       {{ G.name }}
     </p>
-    <RouterLink to="/" style="align-self: center"><h1>X</h1></RouterLink>
+    <RouterLink to="/" style="align-self: center">
+      <h1>X</h1>
+    </RouterLink>
   </div>
 </template>
 

@@ -1,7 +1,6 @@
 <script async setup>
 import { ref } from "vue";
 import GameCard from "../components/GameCard.vue";
-import { supabase } from "../supabase";
 
 const RAWG_API_KEY = "6c361a8e1cbd4e54968bb6859e285e08";
 let page = ref("1");
@@ -13,7 +12,7 @@ async function getGames(page) {
   );
 
   response_content.value = await res.json();
-  // response_content.removeIf((i) => i.background_image() == null);
+  response_content.value.removeIf(() => (background_image = null));
 }
 getGames(page);
 function Jump() {
@@ -40,6 +39,12 @@ function Fall() {
 </script>
 
 <template>
+  <div class="Buttons">
+    <button class="backward" @click="Fall">◀️</button>
+    <h4>{{ page }}</h4>
+    <button class="foward" @click="Jump">▶️</button>
+  </div>
+
   <div class="GameBox flex">
     <GameCard
       v-for="response in response_content.results"

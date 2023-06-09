@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
-
 import { supabase } from "../supabase.js";
+
 export const LikeStore = defineStore("Like", {
   state: () => ({ Like: [] }),
   getters: {

@@ -17,7 +17,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1>{{ StoreLike.Like }}</h1>
+  <h1>Super Best Friends Game Site</h1>
   <nav class="container">
     <li><RouterLink to="/"> Home</RouterLink></li>
 

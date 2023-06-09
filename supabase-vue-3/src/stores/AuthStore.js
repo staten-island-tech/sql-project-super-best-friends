@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import { supabase } from "../supabase.js";
 
 export const AuthStore = defineStore({
   id: "auth",
