@@ -8,7 +8,7 @@ export const AuthStore = defineStore({
     };
   },
   actions: {
-    loadUser(user) {
+    async loadUser(user) {
       this.currentUser = user;
     },
     clearUser() {

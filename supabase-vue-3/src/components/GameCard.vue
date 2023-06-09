@@ -5,8 +5,8 @@
     <!-- <button :id="Game.id" @click="handleItemClick($event)">{{AA}}</button> -->
     <img :src="Game.background_image" :alt="Game.name" />
     <p  @click="Liking">
-      <h1 :id="Game.id" :class="Game.name" @click="AintExist" v-if="Liked" style="color: red" >♥</h1>
-      <h1 :id="Game.id" :class="Game.name" @click="Exists" v-else  >♥</h1>
+      <h1 :id="Game.id" :class="Game.slug" @click="Exists" v-if="Liked" style="color: red" >♥</h1>
+      <h1 :id="Game.id" :class="Game.slug" @click="AintExist" v-else  >♥</h1>
     </p>
   </div>
 </template>
@@ -22,8 +22,9 @@ import { ref } from "vue";
 import { computed } from "vue";
 import { supabase } from "../supabase";
 import { RouterLink, RouterView } from "vue-router";
+import { AuthStore } from "../stores/AuthStore";
 
-//Refs
+const StoreAuth = AuthStore();
 
 const handleItemClick = (event) => {
   const id = event.target.id
@@ -55,14 +56,13 @@ async function Exists(event) {
   const { data, error } = await supabase
     .from("like_system")
     .delete()
-    .eq("id", event.target.id);
-
+    .match({id: event.target.id, user_id: StoreAuth.currentUser});
     console.log("Deleted from Supabase");
 }
 async function AintExist(event) {
   const { error } = await supabase
     .from("like_system")
-    .insert({ id: event.target.id, name: event.target.classList[0] });
+    .insert({ id: event.target.id, name: event.target.classList[0], user_id: StoreAuth.currentUser });
   console.log("Added to Supabase");
 }
 let Liked = ref(false);

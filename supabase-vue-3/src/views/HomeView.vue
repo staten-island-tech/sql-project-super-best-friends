@@ -12,7 +12,6 @@ async function getGames(page) {
   );
 
   response_content.value = await res.json();
-  response_content.value.removeIf(() => (background_image = null));
 }
 getGames(page);
 function Jump() {

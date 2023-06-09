@@ -26,7 +26,6 @@
 <script setup>
 import { ref } from "vue";
 import { supabase } from "../supabase.js";
-// import { defineStore } from "pinia";
 
 const email = ref("");
 const password = ref("");
