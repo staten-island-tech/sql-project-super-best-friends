@@ -27,7 +27,6 @@
 import { ref } from "vue";
 import { supabase } from "../supabase.js";
 import router from "../router/index.js";
-// import { defineStore } from "pinia";
 import { AuthStore } from "../stores/AuthStore";
 
 const StoreAuth = AuthStore();
@@ -43,9 +42,12 @@ async function signIn() {
     let {
       data: { user },
     } = await supabase.auth.getUser();
-    StoreAuth.loadUser(user.id);
-
     console.log(data);
+    console.log("alshdlkahkljd");
+    StoreAuth.loadUser(user);
+    console.log(StoreAuth.currentUser.email);
+    StoreAuth.loadEmail(StoreAuth.currentUser.email);
+
     router.push("/");
   } catch (error) {
     console.log("An error occurred during signin", error);

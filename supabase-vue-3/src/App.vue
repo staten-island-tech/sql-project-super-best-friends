@@ -17,6 +17,7 @@ onMounted(() => {
 
 async function LogOut() {
   const { error } = await supabase.auth.signOut();
+  StoreLike.$reset();
   console.log("user logged out");
   auth.currentUser = null;
   router.push("/sign-in");

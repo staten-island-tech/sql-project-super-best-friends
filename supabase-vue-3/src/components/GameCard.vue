@@ -4,9 +4,9 @@
     
     <!-- <button :id="Game.id" @click="handleItemClick($event)">{{AA}}</button> -->
     <img :src="Game.background_image" :alt="Game.name" />
-    <p  @click="Liking">
-      <h1 :id="Game.id" :class="Game.slug" @click="Exists" v-if="Liked" style="color: red" >♥</h1>
-      <h1 :id="Game.id" :class="Game.slug" @click="AintExist" v-else  >♥</h1>
+    <p  @click="likeGame(Game.id)">
+      <h1 :id="Game.id" :class="Game.slug" v-if="Liked" style="color: red" >♥</h1>
+      <h1 :id="Game.id" :class="Game.slug" v-else  >♥</h1>
     </p>
   </div>
 </template>
@@ -16,21 +16,62 @@ Clean up Css a bit
 Make PopUp Card  -->
 <script setup>
 //Imports
-
-import { LikeStore } from "../stores/LikeStore";
-import { ref } from "vue";
+import { ref, onBeforeUpdate } from "vue";
 import { computed } from "vue";
 import { supabase } from "../supabase";
 import { RouterLink, RouterView } from "vue-router";
 import { AuthStore } from "../stores/AuthStore";
+import { LikeStore } from "../stores/LikeStore";
 
+const props = defineProps({
+  Game: Object,
+  title: String,
+  isLiked: Boolean
+});
+const StoreLikes = LikeStore();
 const StoreAuth = AuthStore();
+const Liked = ref(props.isLiked);
+
+async function likeGame(id){
+  const gameId = id;
+  console.log("clicked on game with id", gameId);
+  Liked.value = !Liked.value;
+  console.log(Liked.value)
+  if(Liked.value === false) {
+    const likeIndex = StoreLikes.Like.indexOf(gameId);
+    StoreLikes.Like.splice(likeIndex, 1);
+    console.log("NEW LIKES AFTER REMOVAL", StoreLikes.Like)
+    const userEmail = StoreAuth.currentUser.email;
+    const { error } = await supabase.from("accounts").update({ Likes: StoreLikes.Like }).eq("UserEmail", userEmail);
+    if (error) {
+      console.log(error);
+    }
+    return
+  }
+  //update the like in the store
+  // StoreLikes.Like.push(gameId);
+  //update the like in supabase
+  StoreLike.Like.push(gameId);
+  const userEmail = StoreAuth.currentUser.email;
+  console.log('ADDING THE FOLLOWING INTO SUPABASE', StoreLikes.Like);
+  console.log(typeof(StoreLikes.Like))
+  console.log(userEmail)
+  const { error } = await supabase.from("accounts").update({ Likes: StoreLikes.Like }).eq("UserEmail", userEmail);
+  if (error) {
+    console.log(error);
+  }
+  console.log("Updated the like in supabase")
+}
+
+const StoreLike = LikeStore();
+const DataPath = computed(() => {
+  return `/DesData/${props.Game.id}`;
+});
 
 const handleItemClick = (event) => {
   const id = event.target.id
   StoreLike.PushLike(id);
 };
-const StoreLike = LikeStore();
 
 async function checkExists(event) {
   // Liked.value = !Liked.value
@@ -52,6 +93,7 @@ async function checkExists(event) {
     await AintExist(event);
   }
 }
+
 async function Exists(event) {
   const { data, error } = await supabase
     .from("likes")
@@ -59,23 +101,13 @@ async function Exists(event) {
     .match({id: event.target.id, user_id: StoreAuth.currentUser});
     console.log("Deleted from Supabase");
 }
+
 async function AintExist(event) {
   const { error } = await supabase
     .from("likes")
     .insert({ id: event.target.id, name: event.target.classList[0], user_id: StoreAuth.currentUser });
   console.log("Added to Supabase");
 }
-let Liked = ref(false);
-function Liking(){
-  Liked.value = !Liked.value
-}
-
-const props = defineProps({
-  Game: Object,
-});
-const DataPath = computed(() => {
-  return `/DesData/${props.Game.id}`;
-});
 </script>
 
 <style scoped>

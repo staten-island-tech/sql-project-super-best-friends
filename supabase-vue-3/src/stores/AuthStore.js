@@ -5,20 +5,24 @@ export const AuthStore = defineStore({
   state: () => {
     return {
       currentUser: null,
+      userEmail: null,
     };
   },
   actions: {
-    async loadUser(user) {
+    loadUser(user) {
       this.currentUser = user;
     },
     clearUser() {
       this.currentUser = null;
     },
+    loadEmail(email) {
+      this.userEmail = email;
+    },
   },
 
   getters: {
     isAuthenticated() {
-      return !!this.currentUser;
+      return this.currentUser;
     },
   },
 });
